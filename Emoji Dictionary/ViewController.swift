@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var emojis :Array = ["👑","🤓","😜","❤️","😍 ","😘","💑"]
+    var emojis : [Emoji] = []
     
     
     override func viewDidLoad() {
@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.dataSource = self
         tableView.delegate = self
+        emojis = makeEmojiArray()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,7 +31,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = emojis[indexPath.row]
+        cell.textLabel?.text = emojis[indexPath.row].emoji
         return cell
     }
     
@@ -42,7 +43,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let defvc = segue.destination as! EmojiDetailViewController
         
-        defvc.Emoji = sender as! String
+        let emoji : Emoji = sender as! Emoji
+        
+        defvc.emoji = emoji
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,6 +53,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
     
+    func makeEmojiArray () -> [Emoji] {
+        let emoji1 = Emoji()
+        emoji1.emoji = "👑"
+        emoji1.birthyear = "2010"
+        emoji1.definition = "kings crown"
+        emoji1.category = "Things"
+        let emoji2 = Emoji()
+        emoji2.emoji = "🤓"
+        emoji2.birthyear = "2016"
+        emoji2.definition = "Nerdy"
+        emoji2.category = "Smiley"
+        let emoji3 = Emoji()
+        emoji3.emoji = "😜"
+        emoji3.birthyear = "2010"
+        emoji3.definition = "Goober"
+        emoji3.category = "Smiley"
+        let emoji4 = Emoji()
+        emoji4.emoji = "❤️"
+        emoji4.birthyear = "2016"
+        emoji4.definition = "Heart"
+        emoji4.category = "Hearts"
+        let emoji7 = Emoji()
+        emoji7.emoji = "😍"
+        emoji7.birthyear = "2010"
+        emoji7.definition = "love Face"
+        emoji7.category = "Smiley"
+        let emoji5 = Emoji()
+        emoji5.emoji = "😘"
+        emoji5.birthyear = "2010"
+        emoji5.definition = "kiss face"
+        emoji5.category = "Smiley"
+        let emoji6 = Emoji()
+        emoji6.emoji = "💑"
+        emoji6.birthyear = "2016"
+        emoji6.definition = "In Love"
+        emoji6.category = "People"
+        
+        return [emoji1,emoji2,emoji3,emoji4,emoji7,emoji5,emoji6]
+    }
     
 }
+
+
+
+
 

@@ -11,18 +11,21 @@ import UIKit
 class EmojiDetailViewController: UIViewController {
 
     
-    var Emoji = ""
-    var details = ""
+    var emoji = Emoji()
     
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var category: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emojiLabel.text = Emoji
-        detailsLabel.text = details
-
+        emojiLabel.text = emoji.emoji
+        detailsLabel.text = emoji.definition
+        year.text = emoji.birthyear
+        category.text = emoji.category
+        
         // Do any additional setup after loading the view.
     }
 
